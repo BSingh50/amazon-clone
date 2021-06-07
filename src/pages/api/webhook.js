@@ -26,6 +26,8 @@ const fulfillOrder = async (session) => {
     })
     .then(() => {
         console.log(`SUCCESS: Order ${session.id} had been added to the DB`);
+    }).catch((err) => {
+        console.log(`ERROR: ${err} MESSAGE: ${err.message}`)
     })
 }
 
