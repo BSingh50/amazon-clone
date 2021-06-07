@@ -39,7 +39,7 @@ function Orders({orders}) {
 export default Orders
 
 export async function getServerSideProps(context){
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const stripe = require('stripe')(`${process.env.STRIPE_SECRET_KEY}`);
 
     //GET the users logged in credentials
     const session = await getSession(context);
