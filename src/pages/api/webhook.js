@@ -32,7 +32,10 @@ const fulfillOrder = async (session) => {
 }
 
 export default async (req, res) => {
+    console.log("webhook file: test 1")
+
     if (req.method === 'POST'){
+        console.log("webhook file: in post")
         const requestBuffer = await buffer(req);
         const payload = requestBuffer.toString();
         const sig = req.headers["stripe-signature"];
@@ -49,8 +52,10 @@ export default async (req, res) => {
 
         //handle checkout session completed event
         if(event.type === 'checkout.session.completed'){
-            const session = event.data.object;
+            console.log("webhook file: in event")
 
+            const session = event.data.object;
+            
             //fulfill order
             return fulfillOrder(session)
             .then(() => res.status(200))
